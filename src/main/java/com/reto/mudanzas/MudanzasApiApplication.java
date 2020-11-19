@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MudanzasApiApplication {
 
 	public static void main(String[] args) {
+            
 		SpringApplication.run(MudanzasApiApplication.class, args);
 	}
 
