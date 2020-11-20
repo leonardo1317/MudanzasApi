@@ -1,5 +1,6 @@
 package com.reto.mudanzas.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -7,25 +8,30 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "competitors", schema = "public")
 public class Competitor {
-
+   
     @Id
-    private Long id;
+    private String id;
     private String code;
-    private Long createdate;
+    @Column(name = "filecontent")
+    private String fileContent;
+    @Column(name = "createdate")
+    private Long createDate;
 
     public Competitor() {
     }
 
-    public Competitor(String code, Long createdate) {
+    public Competitor(String id, String code, String fileContent, Long createDate) {
+        this.id = id;
         this.code = code;
-        this.createdate = createdate;
+        this.fileContent = fileContent;
+        this.createDate = createDate;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -37,12 +43,20 @@ public class Competitor {
         this.code = code;
     }
 
-    public Long getCreatedate() {
-        return createdate;
+    public String getFileContent() {
+        return fileContent;
     }
 
-    public void setCreatedate(Long createdate) {
-        this.createdate = createdate;
+    public void setFileContent(String fileContent) {
+        this.fileContent = fileContent;
+    }
+
+    public Long getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Long createDate) {
+        this.createDate = createDate;
     }
 
 }

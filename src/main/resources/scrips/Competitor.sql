@@ -1,7 +1,7 @@
-create table competitors (
-  id serial,
-  code varchar(15) NOT NULL,
-  createdate integer NOT NULL,
-  primary key (id)
+CREATE TABLE competitors (
+  id VARCHAR (50),
+  code VARCHAR (15) NOT NULL,
+  filecontent TEXT NOT NULL,
+  createdate BIGINT NOT NULL,
+  PRIMARY KEY (id)
  );
-
