@@ -2,6 +2,7 @@ package com.reto.mudanzas.controller;
 
 import com.reto.mudanzas.domain.Competitor;
 import com.reto.mudanzas.domain.dto.CompetitorDTO;
+import com.reto.mudanzas.exception.BusinessException;
 import com.reto.mudanzas.mapper.CompetitorMapper;
 import com.reto.mudanzas.service.CompetitorService;
 import java.util.List;
@@ -44,7 +45,7 @@ public class CompetitorController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") String id) throws Exception {
+    public ResponseEntity<?> delete(@PathVariable("id") String id) throws BusinessException {
         competitorService.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
