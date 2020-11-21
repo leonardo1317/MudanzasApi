@@ -1,16 +1,16 @@
 package com.reto.mudanzas.domain.dto;
 
-public class ParticipantDTO {
+public class ParticipantDto {
 
     private String id;
     private String participantId;
     private String fileContent;
     private Long createDate;
 
-    public ParticipantDTO() {
+    public ParticipantDto() {
     }
 
-    public ParticipantDTO(String id, String participantId, String fileContent, Long createDate) {
+    public ParticipantDto(String id, String participantId, String fileContent, Long createDate) {
         this.id = id;
         this.participantId = participantId;
         this.fileContent = fileContent;

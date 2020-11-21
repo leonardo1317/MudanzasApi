@@ -1,7 +1,6 @@
 package com.reto.mudanzas.controller;
 
-import com.reto.mudanzas.domain.Participant;
-import com.reto.mudanzas.domain.dto.ParticipantDTO;
+
 import com.reto.mudanzas.exception.BusinessException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.reto.mudanzas.mapper.ParticipantMapper;
+import com.reto.mudanzas.persistence.entity.Participant;
 import com.reto.mudanzas.service.ParticipantService;
 import com.reto.mudanzas.service.utils.Util;
 
@@ -43,7 +43,7 @@ public class ParticipantController {
     @GetMapping()
     public ResponseEntity<?> findAll() {
         List<Participant> participants = participantService.findAll();
-        return ResponseEntity.ok().body(participantMapper.toParticipantsDTO(participants));
+        return ResponseEntity.ok().body(participantMapper.toParticipantsDto(participants));
     }
 
     @DeleteMapping("/{id}")
