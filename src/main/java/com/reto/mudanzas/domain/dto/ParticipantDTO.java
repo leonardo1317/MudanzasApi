@@ -1,18 +1,18 @@
 package com.reto.mudanzas.domain.dto;
 
-public class CompetitorDTO {
+public class ParticipantDTO {
 
     private String id;
-    private String code;
+    private String participantId;
     private String fileContent;
     private Long createDate;
 
-    public CompetitorDTO() {
+    public ParticipantDTO() {
     }
 
-    public CompetitorDTO(String id, String code, String fileContent, Long createDate) {
+    public ParticipantDTO(String id, String participantId, String fileContent, Long createDate) {
         this.id = id;
-        this.code = code;
+        this.participantId = participantId;
         this.fileContent = fileContent;
         this.createDate = createDate;
     }
@@ -25,12 +25,12 @@ public class CompetitorDTO {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public String getParticipantId() {
+        return participantId;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setParticipantId(String participantId) {
+        this.participantId = participantId;
     }
 
     public String getFileContent() {

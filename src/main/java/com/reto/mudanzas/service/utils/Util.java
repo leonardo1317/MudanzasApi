@@ -5,7 +5,7 @@ import java.time.Instant;
 import java.util.Base64;
 import java.util.UUID;
 
-public class Util {
+public class Util<T> {
 
     public static String base64Decode(String content) throws BusinessException {
         try {
@@ -34,5 +34,11 @@ public class Util {
         Instant instant = Instant.now();
         return instant.toEpochMilli();
     }
+    
+    public T Object(T content) {
+        
+        return null;
+        
+    } 
 
 }

@@ -6,23 +6,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "competitors", schema = "public")
-public class Competitor {
-   
+@Table(name = "participants", schema = "public")
+public class Participant {
+
     @Id
     private String id;
-    private String code;
+    @Column(name = "participant_id")
+    private String participantId;
     @Column(name = "filecontent")
     private String fileContent;
     @Column(name = "createdate")
     private Long createDate;
 
-    public Competitor() {
+    public Participant() {
     }
 
-    public Competitor(String id, String code, String fileContent, Long createDate) {
+    public Participant(String id, String participantId, String fileContent, Long createDate) {
         this.id = id;
-        this.code = code;
+        this.participantId = participantId;
         this.fileContent = fileContent;
         this.createDate = createDate;
     }
@@ -35,12 +36,12 @@ public class Competitor {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public String getParticipantId() {
+        return participantId;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setParticipantId(String participantId) {
+        this.participantId = participantId;
     }
 
     public String getFileContent() {
