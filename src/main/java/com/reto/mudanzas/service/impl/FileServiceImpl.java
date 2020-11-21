@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 public class FileServiceImpl implements FileService {
 
     @Override
-    public List<Integer> read(String content) throws BusinessException {
+    public List<Integer> read(byte[] file) throws BusinessException {
 
         try {
-            return content.lines()
+            return new String(file).lines()
                     .map(String::trim)
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());

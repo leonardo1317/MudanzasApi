@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.reto.mudanzas.mapper.ParticipantMapper;
 import com.reto.mudanzas.service.ParticipantService;
+import com.reto.mudanzas.service.utils.Util;
 
 @RestController
 @RequestMapping("/api/participant")
@@ -31,23 +31,12 @@ public class ParticipantController {
     @Autowired
     ParticipantService participantService;
 
-    @PostMapping()
-    public ResponseEntity<?> save(@RequestBody ParticipantDTO participantDTO) throws Exception {
-
-        Participant participant = participantMapper.toParticipant(participantDTO);
-        participantService.save(participant);
-        /*customer = customerService.save(customer);
-        customerDTO = customerMapper.toCustomerDTO(customer);*/
-        return ResponseEntity.ok(participant);
-
-    }
-
-    @PostMapping(value = "create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public void save(
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> save(
             @NonNull @RequestParam(value = "participantId", required = true) String participantId,
-            @NonNull @RequestParam(value = "file", required = true) MultipartFile file) {
-
-        System.out.println(participantId);
+            @NonNull @RequestParam(value = "file", required = true) MultipartFile multipartFile) throws BusinessException {
+        participantService.save(participantId, Util.toByteArray(multipartFile));
+        return ResponseEntity.ok().build();
 
     }
 

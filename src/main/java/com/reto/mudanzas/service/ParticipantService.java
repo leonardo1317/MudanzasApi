@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ParticipantService {
 
-    public void save(Participant participant) throws BusinessException;
+    public void save(String participantId, byte[] file) throws BusinessException;
 
     public List<Participant> findAll();
 

@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface FileService {
 
-    public List<Integer> read(String content) throws BusinessException;
+    public List<Integer> read(byte[] file) throws BusinessException;
 
     public void create();
 

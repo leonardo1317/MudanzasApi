@@ -1,11 +1,13 @@
 package com.reto.mudanzas.service.utils;
 
 import com.reto.mudanzas.exception.BusinessException;
+import java.io.IOException;
 import java.time.Instant;
 import java.util.Base64;
 import java.util.UUID;
+import org.springframework.web.multipart.MultipartFile;
 
-public class Util<T> {
+public class Util {
 
     public static String base64Decode(String content) throws BusinessException {
         try {
@@ -34,11 +36,14 @@ public class Util<T> {
         Instant instant = Instant.now();
         return instant.toEpochMilli();
     }
-    
-    public T Object(T content) {
-        
-        return null;
-        
-    } 
+
+    public static byte[] toByteArray(MultipartFile multipartFile) throws BusinessException {
+        try {
+            return multipartFile.getBytes();
+        } catch (IOException ex) {
+            throw new BusinessException(ex.getMessage());
+        }
+
+    }
 
 }

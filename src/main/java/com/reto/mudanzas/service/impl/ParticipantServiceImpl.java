@@ -22,15 +22,19 @@ public class ParticipantServiceImpl implements ParticipantService {
     FileService fileService;
 
     @Override
-    public void save(Participant participant) throws BusinessException {
+    public void save(String participantId, byte[] file) throws BusinessException {
 
-        String content = Util.base64Decode(participant.getFileContent());
-        List<Integer> items = fileService.read(content);
-        System.out.println("test: "+ items);
+//        
+//             String content = Util.base64Decode(participant.getFileContent());
+//        List<Integer> items = fileService.read(content);
+//        System.out.println("test: " + items);
+//
+//        participant.setId(Util.toUUIDString());
+//        participant.setCreateDate(Util.currentTimeMillis());
+//        competitorRepository.save(participant);
+        List<Integer> items = fileService.read(file);
 
-        participant.setId(Util.toUUIDString());
-        participant.setCreateDate(Util.currentTimeMillis());
-        competitorRepository.save(participant);
+        System.out.println(participantId +" "+ items);
     }
 
     @Override
