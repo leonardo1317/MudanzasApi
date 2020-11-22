@@ -34,11 +34,12 @@ public class ParticipantService {
 
         loadService.setElements(elements);
         List<List<Integer>> weights = loadService.getWeights();
-        loadService.getNumberOfTrips(weights);
+        List<Integer> tripsList = loadService.getNumberOfTrips(weights);
+        
+        System.out.println(fileService.write(tripsList));
+        
+  
 
-//
-//        System.out.println("max: " + Collections.max(items));
-//        System.out.println("min: " + Collections.min(items));
     }
 
     public List<Participant> findAll() {
