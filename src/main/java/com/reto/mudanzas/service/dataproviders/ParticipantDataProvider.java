@@ -10,6 +10,6 @@ public interface ParticipantDataProvider {
 
     public List<Participant> findAll();
 
-    public void deleteById(String id) throws BusinessException;
+    public void deleteById(Long id) throws BusinessException;
 
 }

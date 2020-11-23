@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.reto.mudanzas.service.dataproviders.ParticipantDataProvider;
-import java.util.Collections;
 
 @Service
 public class ParticipantService {
@@ -23,22 +22,17 @@ public class ParticipantService {
 
     public void save(String participantId, byte[] file) throws BusinessException {
 
-//        
-//             String content = Util.base64Decode(participant.getFileContent());
-//        List<Integer> items = fileService.read(content);
-//        System.out.println("test: " + items);
-//
-//        participant.setId(Util.toUUIDString());
-//        participant.setCreateDate(Util.currentTimeMillis());
         List<Integer> elements = fileService.read(file);
-
-        loadService.setElements(elements);
-        List<List<Integer>> weights = loadService.getWeights();
+        List<List<Integer>> weights = loadService.getWeights(elements);
         List<Integer> tripsList = loadService.getNumberOfTrips(weights);
-        
-        System.out.println(fileService.write(tripsList));
-        
-  
+        String trace = fileService.write(tripsList);
+
+        Participant participant = new Participant();
+        participant.setParticipantId(participantId);
+        participant.setCreateDate(Util.currentTimeMillis());
+        participant.setTrace(trace);
+
+        participantDataProvider.save(participant);
 
     }
 
@@ -46,7 +40,7 @@ public class ParticipantService {
         return participantDataProvider.findAll();
     }
 
-    public void deleteById(String id) throws BusinessException {
+    public void deleteById(Long id) throws BusinessException {
         participantDataProvider.deleteById(id);
     }
 

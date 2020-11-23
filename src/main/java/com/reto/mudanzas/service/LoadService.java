@@ -9,22 +9,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoadService {
 
-    private List<Integer> elements;
-
-    public LoadService() {
-    }
-
-    public void setElements(List<Integer> elements) {
-        this.elements = elements;
-    }
-
-    public Integer getDays() {
-
-        return this.elements.get(0);
-    }
-
-    public List<List<Integer>> getWeights() throws BusinessException {
+    public List<List<Integer>> getWeights(List<Integer> elements) throws BusinessException {
         List<List<Integer>> weights = new ArrayList<>();
+
+        int days = elements.get(0);
+        if (!checkDays(days)) {
+            throw new BusinessException("Se encontro un número de dias con el valor: " + days
+                    + " y solo se permiten valores entre 1 y 500");
+        }
 
         for (int i = 1; i < elements.size(); i++) {
             int j = 0;
@@ -91,9 +83,12 @@ public class LoadService {
         return trips;
     }
 
+    private boolean checkWeight(int value) {
+        return 1 <= value && value <= 100;
+    }
 
-    private boolean checkWeight(int dd) {
-        return 1 <= dd && dd <= 100;
+    private boolean checkDays(int value) {
+        return 1 <= value && value <= 500;
     }
 
 }

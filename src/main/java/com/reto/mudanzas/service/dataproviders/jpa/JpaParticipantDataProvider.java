@@ -25,7 +25,7 @@ public class JpaParticipantDataProvider implements ParticipantDataProvider {
     }
 
     @Override
-    public void deleteById(String id) throws BusinessException {
+    public void deleteById(Long id) throws BusinessException {
         if (id == null) {
             throw new BusinessException("El id no puede ser nulo");
         }

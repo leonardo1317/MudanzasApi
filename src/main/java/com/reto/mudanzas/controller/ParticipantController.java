@@ -20,9 +20,11 @@ import com.reto.mudanzas.mapper.ParticipantMapper;
 import com.reto.mudanzas.persistence.entity.Participant;
 import com.reto.mudanzas.service.ParticipantService;
 import com.reto.mudanzas.service.utils.Util;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("/api/participant")
+@CrossOrigin("*")
 public class ParticipantController {
 
     @Autowired
@@ -47,7 +49,7 @@ public class ParticipantController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") String id) throws BusinessException {
+    public ResponseEntity<?> delete(@PathVariable("id") Long id) throws BusinessException {
         participantService.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }

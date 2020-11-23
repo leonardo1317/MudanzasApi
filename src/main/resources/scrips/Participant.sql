@@ -1,7 +1,7 @@
 CREATE TABLE participants (
-  id VARCHAR (50),
+  id SERIAL,
   participant_id VARCHAR (15) NOT NULL,
-  filecontent TEXT NOT NULL,
+  trace TEXT NOT NULL,
   createdate BIGINT NOT NULL,
   PRIMARY KEY (id)
  );

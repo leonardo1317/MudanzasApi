@@ -2,26 +2,26 @@ package com.reto.mudanzas.domain.dto;
 
 public class ParticipantDto {
 
-    private String id;
+    private Long id;
     private String participantId;
-    private String fileContent;
+    private String trace;
     private Long createDate;
 
     public ParticipantDto() {
     }
 
-    public ParticipantDto(String id, String participantId, String fileContent, Long createDate) {
+    public ParticipantDto(Long id, String participantId, String trace, Long createDate) {
         this.id = id;
         this.participantId = participantId;
-        this.fileContent = fileContent;
+        this.trace = trace;
         this.createDate = createDate;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -33,12 +33,12 @@ public class ParticipantDto {
         this.participantId = participantId;
     }
 
-    public String getFileContent() {
-        return fileContent;
+    public String getTrace() {
+        return trace;
     }
 
-    public void setFileContent(String fileContent) {
-        this.fileContent = fileContent;
+    public void setTrace(String trace) {
+        this.trace = trace;
     }
 
     public Long getCreateDate() {
