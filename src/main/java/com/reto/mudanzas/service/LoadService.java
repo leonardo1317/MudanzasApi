@@ -10,6 +10,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoadService {
 
+    /**
+     * Método para obtener los pesos de los elementos
+     *
+     * @param elements
+     * @return
+     * @throws BusinessException
+     */
     public List<List<Integer>> getWeights(List<Integer> elements) throws BusinessException {
         List<List<Integer>> weights = new ArrayList<>();
 
@@ -41,6 +48,14 @@ public class LoadService {
 
     }
 
+    /**
+     * Se obtiene el número de viajes deacuerdo a una lista de pesos agrupados
+     * por día
+     *
+     * @param weights
+     * @return
+     * @throws BusinessException
+     */
     public List<Integer> getNumberOfTrips(List<List<Integer>> weights) throws BusinessException {
         List<Integer> tripsList = new ArrayList<>();
         for (List<Integer> weightList : weights) {
@@ -59,6 +74,11 @@ public class LoadService {
 
     }
 
+    /**
+     *
+     * @param weightList
+     * @return
+     */
     private int calculateTrips(List<Integer> weightList) {
 
         int maxWeight = Collections.max(weightList);
