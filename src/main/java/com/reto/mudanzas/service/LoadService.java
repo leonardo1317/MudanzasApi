@@ -1,6 +1,7 @@
 package com.reto.mudanzas.service;
 
 import com.reto.mudanzas.exception.BusinessException;
+import com.reto.mudanzas.service.validation.BusinessValidation;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +14,7 @@ public class LoadService {
         List<List<Integer>> weights = new ArrayList<>();
 
         int days = elements.get(0);
-        if (!checkDays(days)) {
+        if (!BusinessValidation.checkDays(days)) {
             throw new BusinessException("Se encontro un número de dias con el valor: " + days
                     + " y solo se permiten valores entre 1 y 500");
         }
@@ -21,7 +22,7 @@ public class LoadService {
         for (int i = 1; i < elements.size(); i++) {
             int j = 0;
             int N = elements.get(i);
-            if (!checkWeight(N)) {
+            if (!BusinessValidation.checkElementsQuantity(N)) {
                 throw new BusinessException("Se encontró un elemento con el valor: " + N
                         + " y solo se permiten valores entre 1 y 100");
             }
@@ -44,10 +45,10 @@ public class LoadService {
         List<Integer> tripsList = new ArrayList<>();
         for (List<Integer> weightList : weights) {
 
-            Integer greaterWeight = Collections.max(weightList);
+            int maxWeight = Collections.max(weightList);
 
-            if (!checkWeight(greaterWeight)) {
-                throw new BusinessException("Se encontró un elemento con peso: " + greaterWeight
+            if (!BusinessValidation.checkMaxWeight(maxWeight)) {
+                throw new BusinessException("Se encontró un elemento con peso: " + maxWeight
                         + " y solo se permiten valores entre 1 y 100");
             }
             tripsList.add(calculateTrips(weightList));
@@ -60,16 +61,16 @@ public class LoadService {
 
     private int calculateTrips(List<Integer> weightList) {
 
-        int maxValue = Collections.max(weightList);
+        int maxWeight = Collections.max(weightList);
         int element = 1;
         int trips = 0;
 
-        weightList.remove(weightList.indexOf(maxValue));
-        while ((element * maxValue) < 50) {
+        weightList.remove(weightList.indexOf(maxWeight));
+        while (BusinessValidation.checkTotalWeight(element, maxWeight)) {
 
             if (!weightList.isEmpty()) {
-                int minValue = Collections.min(weightList);
-                weightList.remove(weightList.lastIndexOf(minValue));
+                int minWeight = Collections.min(weightList);
+                weightList.remove(weightList.lastIndexOf(minWeight));
                 element++;
             } else {
                 return trips;
@@ -81,14 +82,6 @@ public class LoadService {
         }
 
         return trips;
-    }
-
-    private boolean checkWeight(int value) {
-        return 1 <= value && value <= 100;
-    }
-
-    private boolean checkDays(int value) {
-        return 1 <= value && value <= 500;
     }
 
 }

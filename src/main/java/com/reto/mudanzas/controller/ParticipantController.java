@@ -1,10 +1,8 @@
 package com.reto.mudanzas.controller;
 
-
 import com.reto.mudanzas.exception.BusinessException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
@@ -36,10 +34,14 @@ public class ParticipantController {
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> save(
             @NonNull @RequestParam(value = "participantId", required = true) String participantId,
-            @NonNull @RequestParam(value = "file", required = true) MultipartFile multipartFile) throws BusinessException {
-        participantService.save(participantId, Util.toByteArray(multipartFile));
+            @NonNull @RequestParam(value = "file", required = true) MultipartFile multipartFile) {
+        try {
+            participantService.save(participantId, Util.toByteArray(multipartFile));
+        } catch (BusinessException ex) {
+            return ResponseEntity.badRequest()
+                    .body(ex.getMessage());
+        }
         return ResponseEntity.ok().build();
-
     }
 
     @GetMapping()
@@ -49,9 +51,14 @@ public class ParticipantController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") Long id) throws BusinessException {
-        participantService.deleteById(id);
-        return ResponseEntity.status(HttpStatus.OK).build();
+    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
+        try {
+            participantService.deleteById(id);
+        } catch (BusinessException ex) {
+            return ResponseEntity.badRequest()
+                    .body(ex.getMessage());
+        }
+        return ResponseEntity.ok().build();
     }
 
 }
